@@ -1,0 +1,248 @@
+# Format:
+#
+# - Comments
+#   + Any line that starts with #
+#
+# - Character sets
+#   + The first line that is not a comment and not a blank line is the start of
+#       the list of character sets
+#   + Name (can not contain [, ], space, or tab)
+#   + Blank (space or tab)
+#   + Characters
+#     * "[" plain text "]" (ex: [abcde])
+#     * "h[" hex "]"       (ex: h[6162636465])
+#     * no duplicate characters allowed
+#
+# - Sub key spaces
+#   + The first line that is not a character set, not a comment, and not a
+#       blank line is the start of the list of sub key spaces
+#   + List of character set names separated by one or more spaces and/or tabs
+#     * If every character set name is one character long then there is no
+#         separator needed
+#
+###############################################################################
+
+
+#
+# Character sets
+#
+
+*	[!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~]
+s	[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]
+M	[0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]
+n	[0123456789abcdefghijklmnopqrstuvwxyz]
+m	[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]
+a	[abcdefghijklmnopqrstuvwxyz]
+A	[ABCDEFGHIJKLMNOPQRSTUVWXYZ]
+0	[0123456789]
+
+
+#
+# Sub key spaces
+#
+
+# Total key space 7,729,587,438,134,794 = 2 ^ 52.779
+
+# With MySQL323 the last two characters are not included because they are always "**"
+# So "maaa" will crack "maaa**"
+# 7,729,587,438,134,794 * 94 * 94 = 68,298,634,603,359,039,784 = 2 ^ 65.888
+
+# Total run time should be around 160 days on a quad core
+# Please note that you will on average find a collision in just over 5 days on a quad core
+
+# *
+# **
+# 0000
+# 00000
+# ***
+# maaa
+# 000000
+# Mnnn-maaa-0000
+# 0000000
+# MMMM-Mnnn
+# maaaa
+# ****-MMMM
+# 00000000
+# Mnnnn-maaaa-00000
+# maaaaa
+# MMMMM-Mnnnn
+# 000000000
+# Mnnnnn-maaaaa-000000
+# *****-MMMMM
+# 0000000000
+# maaaaaa
+# MMMMMM-Mnnnnn
+# 00000000000
+# Mnnnnnn-maaaaaa-0000000
+# maaaaaaa
+# ******-MMMMMM
+# 000000000000
+# MMMMMMM-Mnnnnnn
+# Mnnnnnnn-maaaaaaa-00000000
+# 0000000000000
+# maaaaaaaa
+# *******-MMMMMMM
+# 00000000000000
+# Mnnnnnnnn-maaaaaaaa-000000000
+# MMMMMMMM-Mnnnnnnn
+# maaaaaaaaa
+# ********-MMMMMMMM
+
+*
+**
+0000
+00000
+***
+maaa
+000000
+# Mnnn-maaa-0000
+Mna0
+Ma00
+m000
+Mn0a
+M0aa
+0aaa
+0000000
+# MMMM-Mnnn
+MMMA
+MMAn
+MAnn
+maaaa
+# ****-MMMM
+***s
+**sM
+*sMM
+sMMM
+00000000
+# Mnnnn-maaaa-00000
+Mnna0
+Mna00
+Ma000
+m0000
+Mnn0a
+Mn0aa
+M0aaa
+0aaaa
+maaaaa
+# MMMMM-Mnnnn
+MMMMA
+MMMAn
+MMAnn
+MAnnn
+000000000
+# Mnnnnn-maaaaa-000000
+Mnnna0
+Mnna00
+Mna000
+Ma0000
+m00000
+Mnnn0a
+Mnn0aa
+Mn0aaa
+M0aaaa
+0aaaaa
+# *****-MMMMM
+****s
+***sM
+**sMM
+*sMMM
+sMMMM
+0000000000
+maaaaaa
+# MMMMMM-Mnnnnn
+MMMMMA
+MMMMAn
+MMMAnn
+MMAnnn
+MAnnnn
+00000000000
+# Mnnnnnn-maaaaaa-0000000
+Mnnnna0
+Mnnna00
+Mnna000
+Mna0000
+Ma00000
+m000000
+Mnnnn0a
+Mnnn0aa
+Mnn0aaa
+Mn0aaaa
+M0aaaaa
+0aaaaaa
+maaaaaaa
+# ******-MMMMMM
+*****s
+****sM
+***sMM
+**sMMM
+*sMMMM
+sMMMMM
+000000000000
+# MMMMMMM-Mnnnnnn
+MMMMMMA
+MMMMMAn
+MMMMAnn
+MMMAnnn
+MMAnnnn
+MAnnnnn
+# Mnnnnnnn-maaaaaaa-00000000
+Mnnnnna0
+Mnnnna00
+Mnnna000
+Mnna0000
+Mna00000
+Ma000000
+m0000000
+Mnnnnn0a
+Mnnnn0aa
+Mnnn0aaa
+Mnn0aaaa
+Mn0aaaaa
+M0aaaaaa
+0aaaaaaa
+0000000000000
+maaaaaaaa
+# *******-MMMMMMM
+******s
+*****sM
+****sMM
+***sMMM
+**sMMMM
+*sMMMMM
+sMMMMMM
+00000000000000
+# Mnnnnnnnn-maaaaaaaa-000000000
+Mnnnnnna0
+Mnnnnna00
+Mnnnna000
+Mnnna0000
+Mnna00000
+Mna000000
+Ma0000000
+m00000000
+Mnnnnnn0a
+Mnnnnn0aa
+Mnnnn0aaa
+Mnnn0aaaa
+Mnn0aaaaa
+Mn0aaaaaa
+M0aaaaaaa
+0aaaaaaaa
+# MMMMMMMM-Mnnnnnnn
+MMMMMMMA
+MMMMMMAn
+MMMMMAnn
+MMMMAnnn
+MMMAnnnn
+MMAnnnnn
+MAnnnnnn
+maaaaaaaaa
+# ********-MMMMMMMM
+*******s
+******sM
+*****sMM
+****sMMM
+***sMMMM
+**sMMMMM
+*sMMMMMM
+sMMMMMMM
